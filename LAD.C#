@@ -1,0 +1,63 @@
+```csharp
+using System;
+using System.Collections.Generic;
+
+class ExpenseTracker
+{
+    static List<double> expenses = new List<double>();
+
+    static void AddExpense()
+    {
+        try
+        {
+            Console.Write("Enter expense amount: ");
+            double amount = Convert.ToDouble(Console.ReadLine());
+
+            if (amount <= 0)
+                throw new Exception("Amount must be greater than zero!");
+
+            expenses.Add(amount);
+            Console.WriteLine("Expense added successfully!");
+        }
+        catch (FormatException)
+        {
+            Console.WriteLine("Invalid input! Enter a number.");
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e.Message);
+        }
+    }
+
+    static void ShowExpenses()
+    {
+        double total = 0;
+
+        Console.WriteLine("\nExpense Details:");
+
+        foreach (double amount in expenses)
+        {
+            Console.WriteLine(amount);
+            total += amount;
+        }
+
+        Console.WriteLine("Total Expense: " + total);
+    }
+
+    static void Main()
+    {
+        AddExpense();
+        ShowExpenses();
+    }
+}
+```
+
+**Output:**
+```text
+Enter expense amount: 500
+Expense added successfully!
+
+Expense Details:
+500
+Total Expense: 500
+```
